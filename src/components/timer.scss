@@ -8,14 +8,7 @@
   border-radius: 20%;
   display: grid;
   place-content: center;
-
-  &__inner {
-    position: relative;
-    text-align: center;
-    width: 100%;
-    background-color: beige;
-    border-radius: 100%;
-  }
+  
   &__settings {
     font-size: 26px;
   }

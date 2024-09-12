@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import PlayIcon from "../assets/PlayIcon.svg";
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import PauseIcon from '../assets/PauseIcon.svg'
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import ReplayCircleFilledIcon from "@mui/icons-material/ReplayCircleFilled";
+import AddIcon from "@mui/icons-material/Add";
+import PauseIcon from "../assets/PauseIcon.svg";
+import RemoveIcon from "@mui/icons-material/Remove";
 import "./timer.scss";
 import { Box, Button, CircularProgress, Typography } from "@mui/material";
+
 const Timer = () => {
   //States
   const [progress, setProgress] = useState(15 * 60);
@@ -26,20 +29,21 @@ const Timer = () => {
   const handlePause = () => {
     setIsPaused(true);
   };
-  
+
   const handlePlus = () => {
     setIsPaused(true);
 
-    setProgress(initialTime + 60)
-    setInitialTime((prev)=>prev + 60)
-  }
-  
+    setProgress(initialTime + 60);
+    setInitialTime((prev) => prev + 60);
+  };
+
   const handleMinus = () => {
     setIsPaused(true);
-
-    setProgress(initialTime - 60)
-    setInitialTime((prev)=>prev - 60)
-  }
+    if (progress !== 60) {
+      setProgress(initialTime - 60);
+      setInitialTime((prev) => prev - 60);
+    }
+  };
 
   useEffect(() => {
     if (!isPaused && progress > 0) {
@@ -48,7 +52,6 @@ const Timer = () => {
       }, 1000);
     } else if (progress === 0) {
       setIsRest(!isRest);
-      console.log(isRest);
     }
     return () => {
       if (intervalRef.current) {
@@ -62,26 +65,31 @@ const Timer = () => {
     if (isRest) {
       setProgress(5 * 60);
       setInitialTime(5 * 60);
-    }else{
+    } else {
       setProgress(15 * 60);
       setInitialTime(15 * 60);
-      setIsPaused(true)
+      setIsPaused(true);
     }
-  },[isRest]);
+  }, [isRest]);
 
   const minutes = Math.floor(progress / 60);
   const seconds = progress % 60;
+  
 
+  
   return (
     <div className="timer">
-      <Box position="relative" display="inline-flex">
+      <Box position="relative" justifyContent={'center'} display="inline-flex">
         <CircularProgress
           thickness={5}
           variant="determinate"
           style={{
+            borderRadius: "50%",
             color: !isRest ? "#B30000" : "#B0E0E6",
             strokeLinecap: "round",
+            boxShadow:!isRest ? "0 0 20px 5px #B30000" : "0 0 20px 5px #B0E0E6",
           }}
+          
           value={(progress / initialTime) * 100}
           size={200}
         />
@@ -102,27 +110,49 @@ const Timer = () => {
           </Typography>
         </Box>
       </Box>
-      <div className="timer__settings flex align_center justify_center">
+      <Box  display="flex">
+        <div>
+          <Typography>Break Time</Typography>
+          <div className="timer__settings flex align_center justify_center">
           <Button onClick={handlePlus}>
-            +
+            <AddIcon color="info" fontSize="large" />
           </Button>
           <p>
             {String(Math.floor(initialTime / 60)).padStart(2, "0")}:
             {String(initialTime % 60).padStart(2, "0")}
           </p>
           <Button onClick={handleMinus}>
-            -
+            <RemoveIcon color="info" fontSize="large" />
           </Button>
-      </div>
+        </div>
+        </div>
+        <div>
+          <Typography>Session Time</Typography>
+           <div className="timer__settings flex align_center justify_center">
+          <Button onClick={handlePlus}>
+            <AddIcon color="info" fontSize="large" />
+          </Button>
+          <p>
+            {String(Math.floor(initialTime / 60)).padStart(2, "0")}:
+            {String(initialTime % 60).padStart(2, "0")}
+          </p>
+          <Button onClick={handleMinus}>
+            <RemoveIcon color="info" fontSize="large" />
+          </Button>
+        </div>
+        </div>
+       
+      </Box>
+
       <div className="timer__text">
         <Button onClick={handlePlay}>
-          <PlayIcon />
+          <PlayCircleIcon color="info" fontSize="large" />
         </Button>
         <Button onClick={handlePause}>
           <PauseIcon />
         </Button>
         <Button onClick={handleStop}>
-          <RestartAltIcon color="error" fontSize="large" />
+          <ReplayCircleFilledIcon color="error" fontSize="large" />
         </Button>
       </div>
     </div>
