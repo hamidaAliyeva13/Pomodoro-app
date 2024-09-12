@@ -1,15 +1,49 @@
 .timer {
-  margin-top: 50px;  
+  margin-top: 50px;
   text-align: center;
-  width: 500px;
-  height: 500px;
-  background-image:linear-gradient(to bottom right,rgb(219, 118, 228),rgb(245, 215, 215)) ;
-  box-shadow:0px 0px 15px 2px rgb(109, 109, 109);
+  width: 600px;
+  height: 600px;
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(219, 118, 228),
+    rgb(245, 215, 215)
+  );
+  box-shadow: 0px 0px 15px 2px rgb(109, 109, 109);
   border-radius: 20%;
   display: grid;
   place-content: center;
-  
+  .MuiBox-root {
+    margin-bottom: 10px;
+  }
+  &__settingmain {
+    display: flex;
+  }
   &__settings {
     font-size: 26px;
+  }
+  .settingstime {
+    color: black!important;
+
+    box-shadow: 0px 0px 15px 2px rgb(109, 109, 109);
+    background-image: linear-gradient(
+    to bottom right,
+    rgb(253, 253, 253),
+    rgb(245, 215, 215)
+  );
+    margin: 10px;
+    width: 220px;
+    height: 155px;
+    border-radius: 30%;
+    align-content: center;
+    button {
+        path{
+            color: rgb(49, 49, 49)!important;
+        }
+      border-radius: 100%;
+      width: 60px;
+      height: 60px;
+      margin: 0 10px;
+      
+    }
   }
 }
