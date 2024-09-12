@@ -1,0 +1,22 @@
+.timer {
+  margin-top: 50px;  
+  text-align: center;
+  width: 500px;
+  height: 500px;
+  background-image:linear-gradient(to bottom right,rgb(219, 118, 228),rgb(245, 215, 215)) ;
+  box-shadow:0px 0px 15px 2px rgb(109, 109, 109);
+  border-radius: 20%;
+  display: grid;
+  place-content: center;
+
+  &__inner {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    background-color: beige;
+    border-radius: 100%;
+  }
+  &__settings {
+    font-size: 26px;
+  }
+}

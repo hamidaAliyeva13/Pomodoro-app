@@ -1,0 +1,12 @@
+:root{
+  background-color:rgb(252, 237, 240);
+}
+.flex{
+  display: flex;
+}
+.align_center{
+  align-items: center;
+}
+.justify_center{
+  justify-content: center;
+}
